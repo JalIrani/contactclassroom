@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		259BE8242498580300D0ADB5 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259BE8232498580300D0ADB5 /* School.swift */; };
 		25C737D124931E1A00E3E41F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C737D024931E1A00E3E41F /* AppDelegate.swift */; };
 		25C737D324931E1A00E3E41F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C737D224931E1A00E3E41F /* SceneDelegate.swift */; };
 		25C737D624931E1A00E3E41F /* ContactClassroom.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 25C737D424931E1A00E3E41F /* ContactClassroom.xcdatamodeld */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		259BE8232498580300D0ADB5 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		25C737CD24931E1A00E3E41F /* ContactClassroom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactClassroom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C737D024931E1A00E3E41F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		25C737D224931E1A00E3E41F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		259BE82124984EB600D0ADB5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		259BE822249857F600D0ADB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				259BE8232498580300D0ADB5 /* School.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		25C737C424931E1A00E3E41F = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +118,8 @@
 		25C737CF24931E1A00E3E41F /* ContactClassroom */ = {
 			isa = PBXGroup;
 			children = (
+				259BE822249857F600D0ADB5 /* Model */,
+				259BE82124984EB600D0ADB5 /* Utils */,
 				25C737D024931E1A00E3E41F /* AppDelegate.swift */,
 				25C737D224931E1A00E3E41F /* SceneDelegate.swift */,
 				25C737D724931E1A00E3E41F /* ContentView.swift */,
@@ -273,6 +292,7 @@
 				25C737D124931E1A00E3E41F /* AppDelegate.swift in Sources */,
 				25C737D324931E1A00E3E41F /* SceneDelegate.swift in Sources */,
 				25C737D824931E1A00E3E41F /* ContentView.swift in Sources */,
+				259BE8242498580300D0ADB5 /* School.swift in Sources */,
 				25C737D624931E1A00E3E41F /* ContactClassroom.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
