@@ -54,6 +54,27 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
+//        for locations in businessList {
+//            let location = CLLocationCoordinate2D(latitude: locations.latitude, longitude: locations.longitude)
+//            let marker : GMSMarker = GMSMarker()
+//            marker.icon = UIImage(named: "pin\(locations.flaveCashValue)")
+//            marker.position = location
+//            marker.title = locations.business.name
+//            marker.appearAnimation = GMSMarkerAnimation.pop
+//            marker.map = mapView
+//            marker.userData = locations
+//        }
+        
+        do {
+            if let styleURL = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                print("Unable to find style.json")
+            }
+        } catch {
+            print("One or more of the map styles failed to load. \(error)")
+        }
+        
         setUpHeatMap()
         
         mapView.delegate = self
@@ -80,34 +101,101 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         heatmapLayer.weightedData = list
     }
     
-//    {"lat" : 39.392516, "lng" : -76.614828 } ,
-//    {"lat" : 39.382516, "lng" : -75.624828 } ,
-//    {"lat" : 39.372516, "lng" : -74.634828 } ,
-//    {"lat" : 39.362516, "lng" : -73.644828 } ,
-//    {"lat" : 39.352516, "lng" : -72.654828 }
-    
     private func getDummyLocations() -> [Location] {
         let locationArray : [Location] = [
         Location(latitude:  39.392516, longitude: -76.614828),
-        Location(latitude:  39.382516, longitude: -76.624828),
-        Location(latitude:  39.372516, longitude: -76.634828),
-        Location(latitude:  39.362516, longitude: -76.644828),
-        Location(latitude:  39.352516, longitude: -76.654828),
-        Location(latitude:  24.86170245, longitude: 67.00310938),
-        Location(latitude:  24.83170980, longitude: 67.00210948),
-        Location(latitude:  24.83073537, longitude: 67.02129903),
-        Location(latitude:  24.83073230, longitude: 67.10113298),
-        Location(latitude:  24.83079990, longitude: 67.02939980),
-        Location(latitude:  24.85072329, longitude: 67.02129803),
-        Location(latitude:  24.84089002, longitude: 67.02122203),
-        Location(latitude:  24.84064338, longitude: 67.03120900),
-        Location(latitude:  24.84058890, longitude: 67.04114039),
-        Location(latitude:  24.85059990, longitude: 67.04139399),
-        Location(latitude:  24.85034563, longitude: 67.04111009),
-        Location(latitude:  24.85022093, longitude: 67.04117889),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.392516, longitude: -76.615828),
+        Location(latitude:  39.392516, longitude: -76.616828),
+        Location(latitude:  39.392516, longitude: -76.617828),
+        Location(latitude:  39.392516, longitude: -76.618828),
+        Location(latitude:  39.392516, longitude: -76.619828),
+        Location(latitude:  39.392516, longitude: -76.615928),
+        Location(latitude:  39.392516, longitude: -76.616728),
+        Location(latitude:  39.392516, longitude: -76.617628),
+        Location(latitude:  39.392516, longitude: -76.618528),
         ]
         
         return locationArray
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+//        self.businessData = marker.userData as! Location
+        self.isClicked.toggle()
+        self.numClicks += 1
+        //self.businessData = marker.userData as! Business
+        
+        print("didTap \(isClicked) and \(numClicks)")
+        return true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -150,10 +238,32 @@ struct ContentView: View {
     @State var cameraClicked: Bool = false
     
     var body: some View {
-        VStack {
+        ZStack (alignment: Alignment.top)  {
             GoogleMapControllerRepresentable(isClicked: $isClicked, numClicks: $numClicks, school: $school)
-            //GoogleMapsView()
-                //.edgesIgnoringSafeArea(.all)
+            .overlay(
+                ZStack () {
+                    VStack (alignment: .trailing) {
+                        Spacer()
+                        HStack (alignment: .bottom) {
+                            Spacer()
+                            //Text(self.businessData.business.name).hidden()
+                            Button(action: {
+                                NSLog("button clicked")
+                                self.cameraClicked.toggle()
+                            }) {
+                                Image("camera_enabled")
+                                    .renderingMode(.original)
+                            }
+//                            .sheet(isPresented: self.$cameraClicked) {
+//                                NearbyBusinesses()
+//                            }
+                        }
+                    }
+                }
+            )
+            BottomSheetModal(display: $isClicked, backgroundColor: .constant(Color.red), rectangleColor: .constant(Color.white)) {
+                Text("hello")
+            }
         }
     }
 }

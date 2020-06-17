@@ -21,6 +21,9 @@
 		25CF6CFB2498F14D00127DCD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF6CFA2498F14D00127DCD /* LocationManager.swift */; };
 		25CF6CFD249907E100127DCD /* heatmap.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CF6CFC249907E100127DCD /* heatmap.json */; };
 		25E315AB249AA57400F568D2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E315AA249AA57400F568D2 /* Location.swift */; };
+		25E315AF249AB37000F568D2 /* mapStyle.json in Resources */ = {isa = PBXBuildFile; fileRef = 25E315AE249AB37000F568D2 /* mapStyle.json */; };
+		25E315B1249AB58400F568D2 /* BottomSheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E315B0249AB58400F568D2 /* BottomSheetModal.swift */; };
+		25E315B3249AB72500F568D2 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E315B2249AB72500F568D2 /* ViewExtensions.swift */; };
 		2A277CDA35680ACBD6D0FC25 /* Pods_ContactClassroom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134E5C8D9ADF5250ED9A2B5C /* Pods_ContactClassroom.framework */; };
 		73DFA72CB48AE0B6708696B2 /* Pods_ContactClassroomTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9721698680C3B069C3680E1D /* Pods_ContactClassroomTests.framework */; };
 		C6F2E4CE0943AAB710834C94 /* Pods_ContactClassroom_ContactClassroomUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF5798F52FF61FA3EA09DBE /* Pods_ContactClassroom_ContactClassroomUITests.framework */; };
@@ -69,6 +72,9 @@
 		25CF6CFC249907E100127DCD /* heatmap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heatmap.json; sourceTree = "<group>"; };
 		25E315AA249AA57400F568D2 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		25E315AD249AA79900F568D2 /* ContactClassroom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactClassroom-Bridging-Header.h"; sourceTree = "<group>"; };
+		25E315AE249AB37000F568D2 /* mapStyle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mapStyle.json; sourceTree = "<group>"; };
+		25E315B0249AB58400F568D2 /* BottomSheetModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetModal.swift; sourceTree = "<group>"; };
+		25E315B2249AB72500F568D2 /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		87B84843F8BB8D6AE8F04AF6 /* Pods-ContactClassroom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactClassroom.debug.xcconfig"; path = "Target Support Files/Pods-ContactClassroom/Pods-ContactClassroom.debug.xcconfig"; sourceTree = "<group>"; };
 		9721698680C3B069C3680E1D /* Pods_ContactClassroomTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactClassroomTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F645FE1867D900A033F7B9 /* Pods-ContactClassroom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactClassroom.release.xcconfig"; path = "Target Support Files/Pods-ContactClassroom/Pods-ContactClassroom.release.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 		259BE82124984EB600D0ADB5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				25E315B0249AB58400F568D2 /* BottomSheetModal.swift */,
+				25E315B2249AB72500F568D2 /* ViewExtensions.swift */,
 				25CF6CFA2498F14D00127DCD /* LocationManager.swift */,
 			);
 			path = Utils;
@@ -160,6 +168,7 @@
 				259BE82124984EB600D0ADB5 /* Utils */,
 				25C737D024931E1A00E3E41F /* AppDelegate.swift */,
 				25C737D224931E1A00E3E41F /* SceneDelegate.swift */,
+				25E315AE249AB37000F568D2 /* mapStyle.json */,
 				25CF6CFC249907E100127DCD /* heatmap.json */,
 				25C737D924931E1C00E3E41F /* Assets.xcassets */,
 				25C737DE24931E1C00E3E41F /* LaunchScreen.storyboard */,
@@ -331,6 +340,7 @@
 			files = (
 				25CF6CFD249907E100127DCD /* heatmap.json in Resources */,
 				25C737E024931E1C00E3E41F /* LaunchScreen.storyboard in Resources */,
+				25E315AF249AB37000F568D2 /* mapStyle.json in Resources */,
 				25C737DD24931E1C00E3E41F /* Preview Assets.xcassets in Resources */,
 				25C737DA24931E1C00E3E41F /* Assets.xcassets in Resources */,
 			);
@@ -464,9 +474,11 @@
 				25C737D324931E1A00E3E41F /* SceneDelegate.swift in Sources */,
 				25E315AB249AA57400F568D2 /* Location.swift in Sources */,
 				25CF6CFB2498F14D00127DCD /* LocationManager.swift in Sources */,
+				25E315B1249AB58400F568D2 /* BottomSheetModal.swift in Sources */,
 				25C224422499498C00B3D0C3 /* SchoolView.swift in Sources */,
 				25C737D824931E1A00E3E41F /* ContentView.swift in Sources */,
 				259BE8242498580300D0ADB5 /* School.swift in Sources */,
+				25E315B3249AB72500F568D2 /* ViewExtensions.swift in Sources */,
 				25C737D624931E1A00E3E41F /* ContactClassroom.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
