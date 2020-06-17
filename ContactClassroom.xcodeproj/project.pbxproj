@@ -20,6 +20,7 @@
 		25C737F624931E1C00E3E41F /* ContactClassroomUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C737F524931E1C00E3E41F /* ContactClassroomUITests.swift */; };
 		25CF6CFB2498F14D00127DCD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CF6CFA2498F14D00127DCD /* LocationManager.swift */; };
 		25CF6CFD249907E100127DCD /* heatmap.json in Resources */ = {isa = PBXBuildFile; fileRef = 25CF6CFC249907E100127DCD /* heatmap.json */; };
+		25E315AB249AA57400F568D2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25E315AA249AA57400F568D2 /* Location.swift */; };
 		2A277CDA35680ACBD6D0FC25 /* Pods_ContactClassroom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 134E5C8D9ADF5250ED9A2B5C /* Pods_ContactClassroom.framework */; };
 		73DFA72CB48AE0B6708696B2 /* Pods_ContactClassroomTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9721698680C3B069C3680E1D /* Pods_ContactClassroomTests.framework */; };
 		C6F2E4CE0943AAB710834C94 /* Pods_ContactClassroom_ContactClassroomUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF5798F52FF61FA3EA09DBE /* Pods_ContactClassroom_ContactClassroomUITests.framework */; };
@@ -66,6 +67,8 @@
 		25C737F724931E1C00E3E41F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25CF6CFA2498F14D00127DCD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		25CF6CFC249907E100127DCD /* heatmap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heatmap.json; sourceTree = "<group>"; };
+		25E315AA249AA57400F568D2 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		25E315AD249AA79900F568D2 /* ContactClassroom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ContactClassroom-Bridging-Header.h"; sourceTree = "<group>"; };
 		87B84843F8BB8D6AE8F04AF6 /* Pods-ContactClassroom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactClassroom.debug.xcconfig"; path = "Target Support Files/Pods-ContactClassroom/Pods-ContactClassroom.debug.xcconfig"; sourceTree = "<group>"; };
 		9721698680C3B069C3680E1D /* Pods_ContactClassroomTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactClassroomTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8F645FE1867D900A033F7B9 /* Pods-ContactClassroom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactClassroom.release.xcconfig"; path = "Target Support Files/Pods-ContactClassroom/Pods-ContactClassroom.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				259BE8232498580300D0ADB5 /* School.swift */,
+				25E315AA249AA57400F568D2 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -162,6 +166,7 @@
 				25C737E124931E1C00E3E41F /* Info.plist */,
 				25C737D424931E1A00E3E41F /* ContactClassroom.xcdatamodeld */,
 				25C737DB24931E1C00E3E41F /* Preview Content */,
+				25E315AD249AA79900F568D2 /* ContactClassroom-Bridging-Header.h */,
 			);
 			path = ContactClassroom;
 			sourceTree = "<group>";
@@ -457,6 +462,7 @@
 			files = (
 				25C737D124931E1A00E3E41F /* AppDelegate.swift in Sources */,
 				25C737D324931E1A00E3E41F /* SceneDelegate.swift in Sources */,
+				25E315AB249AA57400F568D2 /* Location.swift in Sources */,
 				25CF6CFB2498F14D00127DCD /* LocationManager.swift in Sources */,
 				25C224422499498C00B3D0C3 /* SchoolView.swift in Sources */,
 				25C737D824931E1A00E3E41F /* ContentView.swift in Sources */,

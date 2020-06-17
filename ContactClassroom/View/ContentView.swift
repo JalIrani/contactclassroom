@@ -18,6 +18,7 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocation(latitude: 39.327309, longitude: -76.616353)
     var zoomLevel: Float = 15.0
+    private var heatmapLayer: GMUHeatmapTileLayer!
     
     init(isClicked: Binding<Bool>, numClicks: Binding<Int>, school: Binding<School>)  {
         _isClicked = isClicked
@@ -52,8 +53,61 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.rotateGestures = true
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
+        
+        setUpHeatMap()
+        
         mapView.delegate = self
         self.view = mapView
+    }
+    
+    private func setUpHeatMap(){
+        heatmapLayer = GMUHeatmapTileLayer()
+        addHeatMap()
+        heatmapLayer.map = mapView
+    }
+    
+    private func addHeatMap(){
+        var list = [GMUWeightedLatLng]()
+        let locations = getDummyLocations()
+        
+        for location in locations {
+            let lat = location.latitude
+            let longi = location.longitude
+            let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat, longi), intensity: 2.0)
+            list.append(coords)
+            print(list)
+        }
+        heatmapLayer.weightedData = list
+    }
+    
+//    {"lat" : 39.392516, "lng" : -76.614828 } ,
+//    {"lat" : 39.382516, "lng" : -75.624828 } ,
+//    {"lat" : 39.372516, "lng" : -74.634828 } ,
+//    {"lat" : 39.362516, "lng" : -73.644828 } ,
+//    {"lat" : 39.352516, "lng" : -72.654828 }
+    
+    private func getDummyLocations() -> [Location] {
+        let locationArray : [Location] = [
+        Location(latitude:  39.392516, longitude: -76.614828),
+        Location(latitude:  39.382516, longitude: -76.624828),
+        Location(latitude:  39.372516, longitude: -76.634828),
+        Location(latitude:  39.362516, longitude: -76.644828),
+        Location(latitude:  39.352516, longitude: -76.654828),
+        Location(latitude:  24.86170245, longitude: 67.00310938),
+        Location(latitude:  24.83170980, longitude: 67.00210948),
+        Location(latitude:  24.83073537, longitude: 67.02129903),
+        Location(latitude:  24.83073230, longitude: 67.10113298),
+        Location(latitude:  24.83079990, longitude: 67.02939980),
+        Location(latitude:  24.85072329, longitude: 67.02129803),
+        Location(latitude:  24.84089002, longitude: 67.02122203),
+        Location(latitude:  24.84064338, longitude: 67.03120900),
+        Location(latitude:  24.84058890, longitude: 67.04114039),
+        Location(latitude:  24.85059990, longitude: 67.04139399),
+        Location(latitude:  24.85034563, longitude: 67.04111009),
+        Location(latitude:  24.85022093, longitude: 67.04117889),
+        ]
+        
+        return locationArray
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
