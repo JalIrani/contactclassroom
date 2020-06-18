@@ -54,6 +54,15 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
+        let location = CLLocationCoordinate2D(latitude: 39.392516, longitude: -76.614828)
+        let marker : GMSMarker = GMSMarker()
+        marker.icon = UIImage(named: "1pin")
+        marker.position = location
+        //marker.title = locations.business.name
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.map = mapView
+        //marker.userData = locations
+        
 //        for locations in businessList {
 //            let location = CLLocationCoordinate2D(latitude: locations.latitude, longitude: locations.longitude)
 //            let marker : GMSMarker = GMSMarker()
