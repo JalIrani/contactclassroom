@@ -58,21 +58,19 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         let marker : GMSMarker = GMSMarker()
         marker.icon = UIImage(named: "1pin")
         marker.position = location
-        //marker.title = locations.business.name
         marker.appearAnimation = GMSMarkerAnimation.pop
         marker.map = mapView
-        //marker.userData = locations
         
-//        for locations in businessList {
-//            let location = CLLocationCoordinate2D(latitude: locations.latitude, longitude: locations.longitude)
-//            let marker : GMSMarker = GMSMarker()
-//            marker.icon = UIImage(named: "pin\(locations.flaveCashValue)")
-//            marker.position = location
-//            marker.title = locations.business.name
-//            marker.appearAnimation = GMSMarkerAnimation.pop
-//            marker.map = mapView
-//            marker.userData = locations
-//        }
+        let location1 = CLLocationCoordinate2D(latitude: 39.3934697, longitude: -76.6169629)
+        let marker1 : GMSMarker = GMSMarker()
+        marker1.icon = UIImage(named: "1pin")
+        marker1.position = location1
+        marker1.appearAnimation = GMSMarkerAnimation.pop
+        marker1.map = mapView
+        
+        // Millenium: 39.3934697 -76.6169629
+        // Admissions: 39.393826, -76.6173382
+        //
         
         do {
             if let styleURL = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
