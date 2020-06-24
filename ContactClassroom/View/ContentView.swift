@@ -54,23 +54,15 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
-        let location = CLLocationCoordinate2D(latitude: 39.392516, longitude: -76.614828)
-        let marker : GMSMarker = GMSMarker()
-        marker.icon = UIImage(named: "1pin")
-        marker.position = location
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
         
-        let location1 = CLLocationCoordinate2D(latitude: 39.3934697, longitude: -76.6169629)
-        let marker1 : GMSMarker = GMSMarker()
-        marker1.icon = UIImage(named: "1pin")
-        marker1.position = location1
-        marker1.appearAnimation = GMSMarkerAnimation.pop
-        marker1.map = mapView
-        
-        // Millenium: 39.3934697 -76.6169629
-        // Admissions: 39.393826, -76.6173382
-        //
+        for building in getBuildings() {
+            let location = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
+            let marker : GMSMarker = GMSMarker()
+            marker.icon = UIImage(named: "1pin")
+            marker.position = location
+            marker.appearAnimation = GMSMarkerAnimation.pop
+            marker.map = mapView
+        }
         
         do {
             if let styleURL = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
@@ -106,6 +98,66 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             print(list)
         }
         heatmapLayer.weightedData = list
+    }
+    
+    private func getBuildings() -> [Location] {
+        let locationArray: [Location] = [
+            // West village Commons
+            Location(latitude:  39.3940218, longitude: -76.6184438),
+            // Carroll hall
+            Location(latitude:  39.3940218, longitude: -76.6184434),
+            // Paca and Tubman house
+            Location(latitude:  39.3944993, longitude: -76.6186892),
+            // Marshall hall
+            Location(latitude:  39.3946746, longitude: -76.6194628),
+            // West village garage
+            Location(latitude:  39.3947254, longitude: -76.6204467),
+            // Enrollment services
+            Location(latitude:  39.3949443, longitude: -76.6178101),
+            // University village
+            Location(latitude:  39.3933607, longitude: -76.6188616),
+            // Johnny Unitas Stadium
+            Location(latitude:  39.388137, longitude: -76.6172737),
+            // SECU Arena
+            Location(latitude:  39.3864039, longitude: -76.6178852),
+            // Towson univ town center
+            Location(latitude:  39.3865108, longitude: -76.6186189),
+            // Union garage
+            Location(latitude:  39.3932044, longitude: -76.6131649),
+            // glen complex (all towers)
+            Location(latitude:  39.3923757, longitude: -76.6106722),
+            // University Union
+            Location(latitude:  39.3936687, longitude: -76.6118096),
+            // Burdick hall
+            Location(latitude:  39.3944498, longitude: -76.6121875),
+            // Towson Towson Garage
+            Location(latitude:  39.3960833, longitude: -76.6109245),
+            // Liberal arts building
+            Location(latitude:  39.3948443, longitude: -76.6096412),
+            // Freedom square
+            Location(latitude:  39.3941533, longitude: -76.6089873),
+            // Adacemic advising
+            Location(latitude:  39.3941533, longitude: -76.6089873),
+            // Hawkins hall
+            Location(latitude:  39.3936619, longitude: -76.6096862),
+            // Smith hall
+            Location(latitude:  39.3936619, longitude: -76.6096862),
+            // Linthicum hall
+            Location(latitude:  39.3940178, longitude: -76.6092685),
+            // Newell hall
+            Location(latitude:  39.3938781, longitude: -76.6069652),
+            // Albert S Cook Library
+            Location(latitude:  39.3938781, longitude: -76.6069652),
+            // Stevens Hall
+            Location(latitude:  39.3929446, longitude: -76.6064361),
+            // 7800 York Road
+            Location(latitude:  39.3916323, longitude: -76.6074323),
+            // 8000 York Road admin building
+            Location(latitude:  39.3917449, longitude: -76.6083984),
+            // Scarborough & Prettyman hall
+            Location(latitude:  39.3942515, longitude: -76.6059451)
+        ]
+        return locationArray
     }
     
     private func getDummyLocations() -> [Location] {
@@ -253,7 +305,6 @@ struct ContentView: View {
                         Spacer()
                         HStack (alignment: .bottom) {
                             Spacer()
-                            //Text(self.businessData.business.name).hidden()
                             Button(action: {
                                 NSLog("button clicked")
                                 self.cameraClicked.toggle()
@@ -261,9 +312,6 @@ struct ContentView: View {
                                 Image("camera_enabled")
                                     .renderingMode(.original)
                             }
-//                            .sheet(isPresented: self.$cameraClicked) {
-//                                NearbyBusinesses()
-//                            }
                         }
                     }
                 }
@@ -272,6 +320,7 @@ struct ContentView: View {
                 Text("hello")
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
