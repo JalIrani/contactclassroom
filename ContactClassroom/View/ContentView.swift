@@ -248,18 +248,8 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-//        self.businessData = marker.userData as! Location
         self.isClicked.toggle()
-        self.numClicks += 1
-        //self.businessData = marker.userData as! Business
-        
-        print("didTap \(isClicked) and \(numClicks)")
         return true
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-      let location: CLLocation = locations.last!
-      print("Location: \(location)")
     }
 
     // Handle authorization for the location manager.
@@ -317,8 +307,21 @@ struct ContentView: View {
                 }
             )
             BottomSheetModal(display: $isClicked, backgroundColor: .constant(Color.red), rectangleColor: .constant(Color.white)) {
-                Text("hello")
+                HStack {
+                    Image("camera_enabled")
+                        .resizable()
+                        .frame(width: 150, height: 150)
+                        .clipShape(Circle())
+                
+                    HStack {
+                        Image("address")
+                            .padding(.bottom, 10)
+                        Text("Building name")
+                        
+                    }
+                }
             }
+            .edgesIgnoringSafeArea(.bottom)
         }
         .edgesIgnoringSafeArea(.all)
     }
