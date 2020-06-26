@@ -14,16 +14,20 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     @Binding var isClicked: Bool
     @Binding var numClicks: Int
     @Binding var school: School
+    @Binding var building: Building
+    var buildingList = [Building(name: "West Village Commons", image: "9pin", risk: "9", location: Location(latitude:  39.3940218, longitude: -76.6184438)),
+    Building(name: "Carroll Hall", image: "2pin", risk: "2", location: Location(latitude:  39.3940218, longitude: -76.6184434))]
     var mapView: GMSMapView!
     var locationManager = CLLocationManager()
     let defaultLocation = CLLocation(latitude: 39.327309, longitude: -76.616353)
     var zoomLevel: Float = 15.0
     private var heatmapLayer: GMUHeatmapTileLayer!
     
-    init(isClicked: Binding<Bool>, numClicks: Binding<Int>, school: Binding<School>)  {
+    init(isClicked: Binding<Bool>, numClicks: Binding<Int>, school: Binding<School>, building: Binding<Building>)  {
         _isClicked = isClicked
         _numClicks = numClicks
         _school = school
+        _building = building
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -32,6 +36,8 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     }
     
     override func viewDidLoad() {
+        
+        buildingList = getBuildings()
         
         locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
@@ -54,15 +60,25 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
+        let location = CLLocationCoordinate2D(latitude: buildingList[0].location.latitude, longitude: buildingList[0].location.longitude)
+        let marker : GMSMarker = GMSMarker()
+        marker.icon = UIImage(named: "3pin")
+        marker.position = location
+        marker.title = buildingList[0].name
+        marker.appearAnimation = GMSMarkerAnimation.pop
+        marker.map = mapView
+        marker.userData = buildingList[0]
         
-        for building in getBuildings() {
-            let location = CLLocationCoordinate2D(latitude: building.latitude, longitude: building.longitude)
-            let marker : GMSMarker = GMSMarker()
-            marker.icon = UIImage(named: "1pin")
-            marker.position = location
-            marker.appearAnimation = GMSMarkerAnimation.pop
-            marker.map = mapView
-        }
+//        for indivBuilding in buildingList {
+//            let location = CLLocationCoordinate2D(latitude: indivBuilding.location.latitude, longitude: indivBuilding.location.longitude)
+//            let marker : GMSMarker = GMSMarker()
+//            marker.icon = UIImage(named: "3pin")
+//            marker.position = location
+//            marker.title = indivBuilding.name
+//            marker.appearAnimation = GMSMarkerAnimation.pop
+//            marker.map = mapView
+//            marker.userData = indivBuilding
+//        }
         
         do {
             if let styleURL = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
@@ -95,67 +111,66 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
             let longi = location.longitude
             let coords = GMUWeightedLatLng(coordinate: CLLocationCoordinate2DMake(lat, longi), intensity: 2.0)
             list.append(coords)
-            print(list)
         }
         heatmapLayer.weightedData = list
     }
     
-    private func getBuildings() -> [Location] {
-        let locationArray: [Location] = [
-            // West village Commons
-            Location(latitude:  39.3940218, longitude: -76.6184438),
-            // Carroll hall
-            Location(latitude:  39.3940218, longitude: -76.6184434),
-            // Paca and Tubman house
-            Location(latitude:  39.3944993, longitude: -76.6186892),
-            // Marshall hall
-            Location(latitude:  39.3946746, longitude: -76.6194628),
-            // West village garage
-            Location(latitude:  39.3947254, longitude: -76.6204467),
-            // Enrollment services
-            Location(latitude:  39.3949443, longitude: -76.6178101),
-            // University village
-            Location(latitude:  39.3933607, longitude: -76.6188616),
-            // Johnny Unitas Stadium
-            Location(latitude:  39.388137, longitude: -76.6172737),
-            // SECU Arena
-            Location(latitude:  39.3864039, longitude: -76.6178852),
-            // Towson univ town center
-            Location(latitude:  39.3865108, longitude: -76.6186189),
-            // Union garage
-            Location(latitude:  39.3932044, longitude: -76.6131649),
-            // glen complex (all towers)
-            Location(latitude:  39.3923757, longitude: -76.6106722),
-            // University Union
-            Location(latitude:  39.3936687, longitude: -76.6118096),
-            // Burdick hall
-            Location(latitude:  39.3944498, longitude: -76.6121875),
-            // Towson Towson Garage
-            Location(latitude:  39.3960833, longitude: -76.6109245),
-            // Liberal arts building
-            Location(latitude:  39.3948443, longitude: -76.6096412),
-            // Freedom square
-            Location(latitude:  39.3941533, longitude: -76.6089873),
-            // Adacemic advising
-            Location(latitude:  39.3941533, longitude: -76.6089873),
-            // Hawkins hall
-            Location(latitude:  39.3936619, longitude: -76.6096862),
-            // Smith hall
-            Location(latitude:  39.3936619, longitude: -76.6096862),
-            // Linthicum hall
-            Location(latitude:  39.3940178, longitude: -76.6092685),
-            // Newell hall
-            Location(latitude:  39.3938781, longitude: -76.6069652),
-            // Albert S Cook Library
-            Location(latitude:  39.3938781, longitude: -76.6069652),
-            // Stevens Hall
-            Location(latitude:  39.3929446, longitude: -76.6064361),
-            // 7800 York Road
-            Location(latitude:  39.3916323, longitude: -76.6074323),
-            // 8000 York Road admin building
-            Location(latitude:  39.3917449, longitude: -76.6083984),
-            // Scarborough & Prettyman hall
-            Location(latitude:  39.3942515, longitude: -76.6059451)
+    private func getBuildings() -> [Building] {
+        let locationArray: [Building] = [
+            Building(name: "West Village Commons", image: "9pin", risk: "9", location: Location(latitude:  39.3940218, longitude: -76.6184438)),
+            Building(name: "Carroll Hall", image: "2pin", risk: "2", location: Location(latitude:  39.3940218, longitude: -76.6184434)),
+//            // Carroll hall
+//            Location(latitude:  39.3940218, longitude: -76.6184434),
+//            // Paca and Tubman house
+//            Location(latitude:  39.3944993, longitude: -76.6186892),
+//            // Marshall hall
+//            Location(latitude:  39.3946746, longitude: -76.6194628),
+//            // West village garage
+//            Location(latitude:  39.3947254, longitude: -76.6204467),
+//            // Enrollment services
+//            Location(latitude:  39.3949443, longitude: -76.6178101),
+//            // University village
+//            Location(latitude:  39.3933607, longitude: -76.6188616),
+//            // Johnny Unitas Stadium
+//            Location(latitude:  39.388137, longitude: -76.6172737),
+//            // SECU Arena
+//            Location(latitude:  39.3864039, longitude: -76.6178852),
+//            // Towson univ town center
+//            Location(latitude:  39.3865108, longitude: -76.6186189),
+//            // Union garage
+//            Location(latitude:  39.3932044, longitude: -76.6131649),
+//            // glen complex (all towers)
+//            Location(latitude:  39.3923757, longitude: -76.6106722),
+//            // University Union
+//            Location(latitude:  39.3936687, longitude: -76.6118096),
+//            // Burdick hall
+//            Location(latitude:  39.3944498, longitude: -76.6121875),
+//            // Towson Towson Garage
+//            Location(latitude:  39.3960833, longitude: -76.6109245),
+//            // Liberal arts building
+//            Location(latitude:  39.3948443, longitude: -76.6096412),
+//            // Freedom square
+//            Location(latitude:  39.3941533, longitude: -76.6089873),
+//            // Adacemic advising
+//            Location(latitude:  39.3941533, longitude: -76.6089873),
+//            // Hawkins hall
+//            Location(latitude:  39.3936619, longitude: -76.6096862),
+//            // Smith hall
+//            Location(latitude:  39.3936619, longitude: -76.6096862),
+//            // Linthicum hall
+//            Location(latitude:  39.3940178, longitude: -76.6092685),
+//            // Newell hall
+//            Location(latitude:  39.3938781, longitude: -76.6069652),
+//            // Albert S Cook Library
+//            Location(latitude:  39.3938781, longitude: -76.6069652),
+//            // Stevens Hall
+//            Location(latitude:  39.3929446, longitude: -76.6064361),
+//            // 7800 York Road
+//            Location(latitude:  39.3916323, longitude: -76.6074323),
+//            // 8000 York Road admin building
+//            Location(latitude:  39.3917449, longitude: -76.6083984),
+//            // Scarborough & Prettyman hall
+//            Location(latitude:  39.3942515, longitude: -76.6059451)
         ]
         return locationArray
     }
@@ -248,6 +263,7 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
     }
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        self.building = marker.userData as! Building
         self.isClicked.toggle()
         return true
     }
@@ -281,6 +297,7 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
 struct ContentView: View {
     
     @State var school: School
+    @State var building: Building
     @State var isClicked: Bool = false
     @State var numClicks: Int = 0
     @State private var showBottomSheet = false
@@ -288,7 +305,7 @@ struct ContentView: View {
     
     var body: some View {
         ZStack (alignment: Alignment.top)  {
-            GoogleMapControllerRepresentable(isClicked: $isClicked, numClicks: $numClicks, school: $school)
+            GoogleMapControllerRepresentable(isClicked: $isClicked, numClicks: $numClicks, school: $school, building: $building)
             .overlay(
                 ZStack () {
                     VStack (alignment: .trailing) {
@@ -301,24 +318,34 @@ struct ContentView: View {
                             }) {
                                 Image("camera_enabled")
                                     .renderingMode(.original)
+                            }.sheet(isPresented: self.$cameraClicked) {
+                                ProgressView()
                             }
                         }
                     }
                 }
             )
-            BottomSheetModal(display: $isClicked, backgroundColor: .constant(Color.red), rectangleColor: .constant(Color.white)) {
+            BottomSheetModal(display: $isClicked, backgroundColor: .constant(Color.gray), rectangleColor: .constant(Color.white)) {
                 HStack {
                     Image("camera_enabled")
                         .resizable()
                         .frame(width: 150, height: 150)
                         .clipShape(Circle())
-                
-                    HStack {
-                        Image("address")
-                            .padding(.bottom, 10)
-                        Text("Building name")
-                        
+                    VStack {
+                        HStack {
+                            Image("address")
+                                .padding(.bottom, 10)
+                            Text("\(self.building.name)")
+                                .bold()
+                                .foregroundColor(Color.white)
+                        }
+                        HStack {
+                            Text("Rating: " + self.building.risk)
+                                .bold()
+                                .foregroundColor(Color.white)
+                        }
                     }
+                    Spacer()
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -332,9 +359,10 @@ struct GoogleMapControllerRepresentable: UIViewControllerRepresentable {
     @Binding var isClicked: Bool
     @Binding var numClicks: Int
     @Binding var school: School
+    @Binding var building: Building
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<GoogleMapControllerRepresentable>) -> GoogleMapController {
-        return GoogleMapController(isClicked: $isClicked, numClicks: $numClicks, school: $school)
+        return GoogleMapController(isClicked: $isClicked, numClicks: $numClicks, school: $school, building: $building)
     }
 
     func updateUIViewController(_ uiViewController: GoogleMapController, context: UIViewControllerRepresentableContext<GoogleMapControllerRepresentable>) {
@@ -345,6 +373,6 @@ struct GoogleMapControllerRepresentable: UIViewControllerRepresentable {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(school: School(id: 4, shortHand: "TU", name: "Towson University", location: CLLocationCoordinate2D(latitude: 39.3925162, longitude: -76.6148279)))
+        ContentView(school: School(id: 4, shortHand: "TU", name: "Towson University", location: CLLocationCoordinate2D(latitude: 39.3925162, longitude: -76.6148279)), building: Building(name: "Test", image: "10pin", risk: "10", location: Location(latitude: 36.983298, longitude: -76.321233)))
     }
 }

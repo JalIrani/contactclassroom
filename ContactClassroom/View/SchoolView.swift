@@ -29,7 +29,7 @@ struct SchoolView: View {
     var body: some View {
         NavigationView {
             List(schools, id: \.name) { school in
-                NavigationLink(destination: ContentView(school: school)) {
+                NavigationLink(destination: ContentView(school: school, building: Building(name: "8000 York Road", image: "", risk: "4", location: Location(latitude: 36.012983, longitude: -76.09238)))) {
                     HStack {
                         Text(school.name)
                     }
