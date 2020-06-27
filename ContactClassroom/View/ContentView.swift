@@ -60,25 +60,26 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
-        let location = CLLocationCoordinate2D(latitude: buildingList[0].location.latitude, longitude: buildingList[0].location.longitude)
-        let marker : GMSMarker = GMSMarker()
-        marker.icon = UIImage(named: "3pin")
-        marker.position = location
-        marker.title = buildingList[0].name
-        marker.appearAnimation = GMSMarkerAnimation.pop
-        marker.map = mapView
-        marker.userData = buildingList[0]
+//        let location = CLLocationCoordinate2D(latitude: buildingList[0].location.latitude, longitude: buildingList[0].location.longitude)
+//        let marker : GMSMarker = GMSMarker()
+//        marker.icon = UIImage(named: "3pin")
+//        marker.position = location
+//        marker.title = buildingList[0].name
+//        marker.appearAnimation = GMSMarkerAnimation.pop
+//        marker.map = mapView
+//        marker.userData = buildingList[0]
         
-//        for indivBuilding in buildingList {
-//            let location = CLLocationCoordinate2D(latitude: indivBuilding.location.latitude, longitude: indivBuilding.location.longitude)
-//            let marker : GMSMarker = GMSMarker()
-//            marker.icon = UIImage(named: "3pin")
-//            marker.position = location
-//            marker.title = indivBuilding.name
-//            marker.appearAnimation = GMSMarkerAnimation.pop
-//            marker.map = mapView
-//            marker.userData = indivBuilding
-//        }
+        for indivBuilding in buildingList {
+            print(indivBuilding.name)
+            let location = CLLocationCoordinate2D(latitude: indivBuilding.location.latitude, longitude: indivBuilding.location.longitude)
+            let marker : GMSMarker = GMSMarker()
+            marker.icon = UIImage(named: indivBuilding.image)
+            marker.position = location
+            marker.title = indivBuilding.name
+            marker.appearAnimation = GMSMarkerAnimation.pop
+            marker.map = mapView
+            marker.userData = indivBuilding
+        }
         
         do {
             if let styleURL = Bundle.main.url(forResource: "mapStyle", withExtension: "json") {
@@ -119,58 +120,28 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         let locationArray: [Building] = [
             Building(name: "West Village Commons", image: "9pin", risk: "9", location: Location(latitude:  39.3940218, longitude: -76.6184438)),
             Building(name: "Carroll Hall", image: "2pin", risk: "2", location: Location(latitude:  39.3940218, longitude: -76.6184434)),
-//            // Carroll hall
-//            Location(latitude:  39.3940218, longitude: -76.6184434),
-//            // Paca and Tubman house
-//            Location(latitude:  39.3944993, longitude: -76.6186892),
-//            // Marshall hall
-//            Location(latitude:  39.3946746, longitude: -76.6194628),
-//            // West village garage
-//            Location(latitude:  39.3947254, longitude: -76.6204467),
-//            // Enrollment services
-//            Location(latitude:  39.3949443, longitude: -76.6178101),
-//            // University village
-//            Location(latitude:  39.3933607, longitude: -76.6188616),
-//            // Johnny Unitas Stadium
-//            Location(latitude:  39.388137, longitude: -76.6172737),
-//            // SECU Arena
-//            Location(latitude:  39.3864039, longitude: -76.6178852),
-//            // Towson univ town center
-//            Location(latitude:  39.3865108, longitude: -76.6186189),
-//            // Union garage
-//            Location(latitude:  39.3932044, longitude: -76.6131649),
-//            // glen complex (all towers)
-//            Location(latitude:  39.3923757, longitude: -76.6106722),
-//            // University Union
-//            Location(latitude:  39.3936687, longitude: -76.6118096),
-//            // Burdick hall
-//            Location(latitude:  39.3944498, longitude: -76.6121875),
-//            // Towson Towson Garage
-//            Location(latitude:  39.3960833, longitude: -76.6109245),
-//            // Liberal arts building
-//            Location(latitude:  39.3948443, longitude: -76.6096412),
-//            // Freedom square
-//            Location(latitude:  39.3941533, longitude: -76.6089873),
-//            // Adacemic advising
-//            Location(latitude:  39.3941533, longitude: -76.6089873),
-//            // Hawkins hall
-//            Location(latitude:  39.3936619, longitude: -76.6096862),
-//            // Smith hall
-//            Location(latitude:  39.3936619, longitude: -76.6096862),
-//            // Linthicum hall
-//            Location(latitude:  39.3940178, longitude: -76.6092685),
-//            // Newell hall
-//            Location(latitude:  39.3938781, longitude: -76.6069652),
-//            // Albert S Cook Library
-//            Location(latitude:  39.3938781, longitude: -76.6069652),
-//            // Stevens Hall
-//            Location(latitude:  39.3929446, longitude: -76.6064361),
-//            // 7800 York Road
-//            Location(latitude:  39.3916323, longitude: -76.6074323),
-//            // 8000 York Road admin building
-//            Location(latitude:  39.3917449, longitude: -76.6083984),
-//            // Scarborough & Prettyman hall
-//            Location(latitude:  39.3942515, longitude: -76.6059451)
+            Building(name: "7800 York Road", image: "3pin", risk: "3", location: Location(latitude:  39.3916323, longitude: -76.6074323)),
+            Building(name: "8000 York Road", image: "3pin", risk: "3", location: Location(latitude:  39.3917449, longitude: -76.6083984)),
+            Building(name: "Scarborough & Prettyman hall", image: "3pin", risk: "3", location: Location(latitude:  39.3942515, longitude: -76.6059451)),
+            Building(name: "Stephens Hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3929446, longitude: -76.6064361)),
+            Building(name: "Albert S Cook Library", image: "3pin", risk: "3", location:  Location(latitude:  39.3938781, longitude: -76.6069652)),
+            Building(name: "Newell hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3938781, longitude: -76.6069652)),
+            Building(name: "Linthicum hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3940178, longitude: -76.6092685)),
+            Building(name: "Smith hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3936619, longitude: -76.6096862)),
+            Building(name: "Hawkins Hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3936619, longitude: -76.6096862)),
+            Building(name: "Academic Advising", image: "3pin", risk: "3", location: Location(latitude:  39.3941533, longitude: -76.6089873)),
+            Building(name: "Freedom Square", image: "3pin", risk: "3", location:  Location(latitude:  39.3941533, longitude: -76.6089873)),
+            Building(name: "Liberal Arts Building", image: "3pin", risk: "3", location:  Location(latitude:  39.3948443, longitude: -76.6096412)),
+            Building(name: "Towson Town Garage", image: "3pin", risk: "3", location:  Location(latitude:  39.3960833, longitude: -76.6109245)),
+            Building(name: "Burdick Hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3944498, longitude: -76.6121875)),
+            Building(name: "Carroll Hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3940218, longitude: -76.6184434)),
+            Building(name: "Tubman and Paca House", image: "3pin", risk: "3", location:  Location(latitude:  39.3944993, longitude: -76.6186892)),
+            Building(name: "Marshall Hall", image: "3pin", risk: "3", location:  Location(latitude:  39.3946746, longitude: -76.6194628)),
+            Building(name: "West Village Garage", image: "3pin", risk: "3", location:  Location(latitude:  39.3947254, longitude: -76.6204467)),
+            Building(name: "Enrollment Services", image: "3pin", risk: "3", location:  Location(latitude:  39.3949443, longitude: -76.6178101)),
+            Building(name: "University Village", image: "3pin", risk: "3", location:  Location(latitude:  39.3933607, longitude: -76.6188616)),
+            Building(name: "Johny Unitas Stadium", image: "3pin", risk: "3", location:  Location(latitude:  39.388137, longitude: -76.6172737)),
+            Building(name: "SECU", image: "3pin", risk: "3", location:  Location(latitude:  39.3864039, longitude: -76.6178852))
         ]
         return locationArray
     }
