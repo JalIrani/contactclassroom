@@ -34,6 +34,8 @@ struct SchoolView: View {
                         Text(school.name)
                     }
                 }
+                .accentColor(.white)
+                .buttonStyle(PlainButtonStyle())
             }
             .navigationBarBackButtonHidden(true)
             .listStyle(GroupedListStyle())

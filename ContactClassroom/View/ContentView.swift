@@ -60,15 +60,6 @@ class GoogleMapController: UIViewController, CLLocationManagerDelegate, GMSMapVi
         mapView.settings.tiltGestures = true
         mapView.isIndoorEnabled = false
         
-//        let location = CLLocationCoordinate2D(latitude: buildingList[0].location.latitude, longitude: buildingList[0].location.longitude)
-//        let marker : GMSMarker = GMSMarker()
-//        marker.icon = UIImage(named: "3pin")
-//        marker.position = location
-//        marker.title = buildingList[0].name
-//        marker.appearAnimation = GMSMarkerAnimation.pop
-//        marker.map = mapView
-//        marker.userData = buildingList[0]
-        
         for indivBuilding in buildingList {
             print(indivBuilding.name)
             let location = CLLocationCoordinate2D(latitude: indivBuilding.location.latitude, longitude: indivBuilding.location.longitude)
@@ -287,9 +278,13 @@ struct ContentView: View {
                                 NSLog("button clicked")
                                 self.cameraClicked.toggle()
                             }) {
-                                Image("report")
-                                    .renderingMode(.original)
-                            }.sheet(isPresented: self.$cameraClicked) {
+                                Image("camera_enabled")
+                                    .resizable()
+                                    .frame(width: 90, height: 90)
+                                    .aspectRatio(contentMode: .fit)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .sheet(isPresented: self.$cameraClicked) {
                                 ProgressView()
                             }
                         }
