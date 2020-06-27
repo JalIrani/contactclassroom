@@ -316,7 +316,7 @@ struct ContentView: View {
                                 NSLog("button clicked")
                                 self.cameraClicked.toggle()
                             }) {
-                                Image("camera_enabled")
+                                Image("report")
                                     .renderingMode(.original)
                             }.sheet(isPresented: self.$cameraClicked) {
                                 ProgressView()
@@ -327,20 +327,23 @@ struct ContentView: View {
             )
             BottomSheetModal(display: $isClicked, backgroundColor: .constant(Color.gray), rectangleColor: .constant(Color.white)) {
                 HStack {
-                    Image("camera_enabled")
+                    Image("7800YorkRoad")
                         .resizable()
                         .frame(width: 150, height: 150)
                         .clipShape(Circle())
                     VStack {
                         HStack {
-                            Image("address")
-                                .padding(.bottom, 10)
-                            Text("\(self.building.name)")
+                            Text("7800 York Road")
                                 .bold()
                                 .foregroundColor(Color.white)
                         }
                         HStack {
-                            Text("Rating: " + self.building.risk)
+                            Text("Rating: 5")
+                                .bold()
+                                .foregroundColor(Color.white)
+                        }
+                        HStack {
+                            Text("Estimated occupants: 198")
                                 .bold()
                                 .foregroundColor(Color.white)
                         }
