@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ProgressView: View {
-    @State var progressValue: Float = 0.11
+    @State var progressValue: Float = 0.53
     
     var body: some View {
         VStack {
@@ -46,7 +46,7 @@ struct ProgressView: View {
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .medium, design: .default))
                     Spacer()
-                    Text("1")
+                    Text("2")
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                 }
@@ -55,7 +55,7 @@ struct ProgressView: View {
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .medium, design: .default))
                     Spacer()
-                    Text("9")
+                    Text("7")
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                 }
@@ -64,7 +64,7 @@ struct ProgressView: View {
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .medium, design: .default))
                     Spacer()
-                    Text("3")
+                    Text("2")
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                 }
@@ -91,7 +91,7 @@ struct ProgressView: View {
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .medium, design: .default))
                     Spacer()
-                    Text("6")
+                    Text("3")
                         .padding(.horizontal)
                         .font(.system(size: 15, weight: .semibold, design: .default))
                 }
@@ -101,7 +101,7 @@ struct ProgressView: View {
                         .font(.system(size: 16, weight: .bold, design: .default))
                         .frame(alignment: .leading)
                     Spacer()
-                    Text("5.5")
+                    Text("5.3")
                     .padding(.horizontal)
                     .font(.system(size: 15, weight: .bold, design: .default))
                 }
